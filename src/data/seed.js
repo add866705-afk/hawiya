@@ -92,7 +92,7 @@ export const initialTestimonials = [
 export const profileDefaults = {
   name:{ar:'عمرو اليوسفي',en:'Amr Al-Yousofi'}, role:{ar:'مصمم هويات بصرية',en:'Visual Identity Designer'},
   bio:{ar:'أصمم هويات بصرية تمنح الأفكار شخصية واضحة، وتحوّل القيم إلى تجارب يمكن رؤيتها وتذكرها. أؤمن أن التصميم الجيد يبدأ بالفهم، وينمو بالبحث، ويكتمل بالتفاصيل.',en:'I build visual identities that give ideas a clear personality and turn values into experiences people can see and remember.'},
-  image:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85',
+  image:'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85',
   skills:['Brand Strategy','Logo Design','Visual Systems','Art Direction','UI Design','Typography'],
   experience:[{ar:'تصميم هويات بصرية لعلامات ناشئة ومتوسطة',en:'Visual identities for emerging and growing brands'},{ar:'تطوير أنظمة تصميم للاستخدام الرقمي والمطبوع',en:'Design systems for digital and print applications'}],
   achievements:[{ar:'5 مشاريع هوية ضمن معرض الأعمال',en:'5 identity projects in the portfolio'},{ar:'منهجية عمل تبدأ بالبحث وتنتهي بدليل استخدام',en:'A research-led process ending with brand guidelines'}],
