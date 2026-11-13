@@ -1,0 +1,1 @@
+export function validateContact(values){const errors={};if(!values.name?.trim())errors.name='required';if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email||''))errors.email='email';if((values.message||'').trim().length<10)errors.message='length';return errors;}
