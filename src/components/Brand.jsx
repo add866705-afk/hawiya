@@ -1,0 +1,1 @@
+export default function Brand(){return <a className="brand" href="/" aria-label="HOWIYA home"><span className="brand-mark">ه</span><span className="brand-word">HOWIYA<span className="brand-divider">/</span><span className="brand-ar">هُوية</span></span></a>;}
