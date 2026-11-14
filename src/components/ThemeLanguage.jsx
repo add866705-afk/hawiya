@@ -1,0 +1,3 @@
+import {Moon,Sun,Languages} from 'lucide-react';
+import {useApp} from '../context/AppContext.jsx';
+export default function ThemeLanguage(){const {language,setLanguage,theme,setTheme}=useApp();return <div className="toolbar-actions"><button className="icon-button" onClick={()=>setTheme(theme==='light'?'dark':'light')} aria-label="Toggle color theme">{theme==='light'?<Moon size={18}/>:<Sun size={18}/>}</button><button className="language-button" onClick={()=>setLanguage(language==='ar'?'en':'ar')} aria-label="Change language"><Languages size={16}/><span>{language==='ar'?'EN':'عربي'}</span></button></div>;}

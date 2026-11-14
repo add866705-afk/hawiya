@@ -1,0 +1,2 @@
+import {Link} from 'react-router-dom';import {ArrowUpRight} from 'lucide-react';import {useTranslation} from '../../hooks/useTranslation.js';
+export default function NotFound(){const {t}=useTranslation();return <div className="not-found"><span className="eyebrow">ERROR / 404</span><strong>404<span>.</span></strong><h1>{t.common.notFound}</h1><Link className="button-primary" to="/">{t.common.backHome}<ArrowUpRight/></Link></div>;}
