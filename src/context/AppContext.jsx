@@ -1,59 +1,181 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { initialProjects, initialServices, initialTestimonials, profileDefaults } from '../data/seed.js';
-import { readStore, writeStore } from '../services/storage.js';
+import {
+  readStorageValue,
+  readStore,
+  removeStorageValue,
+  writeStorageValue,
+  writeStore,
+} from '../services/storage.js';
+
 const AppContext = createContext(null);
 const STORAGE_KEY = 'howiya-site-data-v1';
 const PASSWORD_KEY = 'howiya-demo-password';
+const DEFAULT_SETTINGS = {
+  siteName: 'HOWIYA',
+  seoTitle: 'HOWIYA | هُوية',
+  seoDescription: 'استوديو متخصص في بناء الهويات البصرية والعلامات التجارية.',
+  defaultLanguage: 'ar',
+  accentColor: '#214aa4',
+};
+
+const isObject = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+const localized = (value, fallback) => ({ ...fallback, ...(isObject(value) ? value : {}) });
+
+function removeUnverifiedSampleContent(data) {
+  const testimonials = (Array.isArray(data.testimonials) ? data.testimonials : initialTestimonials)
+    .filter(item => !(
+      (item.id === 't1' && item.name === 'أحمد محمد') ||
+      (item.id === 't2' && item.name === 'سارة علي')
+    ));
+
+  const projects = (Array.isArray(data.projects) ? data.projects : initialProjects).map(project => {
+    const knownSampleClients = {
+      p1: 'رواسي للتطوير العقاري',
+      p2: 'بُن للقهوة المختصة',
+      p3: 'نواة',
+      p4: 'مدار',
+      p5: 'سُفرة',
+    };
+    if (knownSampleClients[project.id] && project.client?.ar === knownSampleClients[project.id]) {
+      return { ...project, client: { ar: 'مشروع مفاهيمي', en: 'Concept project' } };
+    }
+    return project;
+  });
+
+  return { projects, testimonials };
+}
+
+function normalizeSiteData(saved) {
+  const data = isObject(saved) ? saved : {};
+  const profile = isObject(data.profile) ? data.profile : {};
+  const socials = {
+    ...profileDefaults.socials,
+    ...(isObject(profile.socials) ? profile.socials : {}),
+  };
+
+  if (socials.whatsapp === '967700000000') socials.whatsapp = '';
+  if (socials.email === 'hello@howiya.design') socials.email = '';
+  if (socials.instagram === 'https://instagram.com/') socials.instagram = '';
+  if (socials.facebook === 'https://facebook.com/') socials.facebook = '';
+
+  const image = profile.image === 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85'
+    ? ''
+    : (typeof profile.image === 'string' ? profile.image : profileDefaults.image);
+
+  const cleaned = removeUnverifiedSampleContent(data);
+
+  return {
+    projects: cleaned.projects,
+    services: Array.isArray(data.services) ? data.services : initialServices,
+    testimonials: cleaned.testimonials,
+    messages: Array.isArray(data.messages) ? data.messages : [],
+    profile: {
+      ...profileDefaults,
+      ...profile,
+      name: localized(profile.name, profileDefaults.name),
+      role: localized(profile.role, profileDefaults.role),
+      bio: localized(profile.bio, profileDefaults.bio),
+      socials,
+      skills: Array.isArray(profile.skills) ? profile.skills : profileDefaults.skills,
+      tools: Array.isArray(profile.tools) ? profile.tools : profileDefaults.tools,
+      experience: Array.isArray(profile.experience) ? profile.experience : profileDefaults.experience,
+      achievements: Array.isArray(profile.achievements) ? profile.achievements : profileDefaults.achievements,
+      image,
+    },
+    settings: {
+      ...DEFAULT_SETTINGS,
+      ...(isObject(data.settings) ? data.settings : {}),
+    },
+  };
+}
+
+function getInitialLanguage() {
+  return readStorageValue('howiya-language', 'ar') === 'en' ? 'en' : 'ar';
+}
+
+function getInitialTheme() {
+  return readStorageValue('howiya-theme', 'light') === 'dark' ? 'dark' : 'light';
+}
 
 export function AppProvider({ children }) {
-  const [language, setLanguage] = useState(() => localStorage.getItem('howiya-language') || 'ar');
-  const [theme, setTheme] = useState(() => localStorage.getItem('howiya-theme') || 'light');
-  const [adminAuthenticated, setAdminAuthenticated] = useState(() => sessionStorage.getItem('howiya-demo-session') === 'active');
-  const [demoPassword, setDemoPassword] = useState(() => localStorage.getItem(PASSWORD_KEY) || 'HowiyaDemo2026!');
-  const [siteData, setSiteData] = useState(() => readStore(STORAGE_KEY, {
-    projects: initialProjects, services: initialServices, testimonials: initialTestimonials,
-    profile: profileDefaults, messages: [],
-    settings: { siteName: 'HOWIYA', seoTitle: 'HOWIYA | هُوية', seoDescription: 'استوديو متخصص في بناء الهويات البصرية.', defaultLanguage: 'ar', accentColor: '#214aa4' }
-  }));
+  const [language, setLanguage] = useState(getInitialLanguage);
+  const [theme, setTheme] = useState(getInitialTheme);
+  const [adminAuthenticated, setAdminAuthenticated] = useState(
+    () => readStorageValue('howiya-demo-session', '', 'session') === 'active'
+  );
+  const [demoPassword, setDemoPassword] = useState(
+    () => readStorageValue(PASSWORD_KEY, 'HowiyaDemo2026!')
+  );
+  const [siteData, setSiteData] = useState(() => normalizeSiteData(readStore(STORAGE_KEY, null)));
 
   useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-    localStorage.setItem('howiya-language', language);
+    writeStorageValue('howiya-language', language);
   }, [language]);
+
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem('howiya-theme', theme);
+    writeStorageValue('howiya-theme', theme);
   }, [theme]);
+
   useEffect(() => {
     writeStore(STORAGE_KEY, siteData);
     if (siteData.settings?.seoTitle) document.title = siteData.settings.seoTitle;
-    const description = document.querySelector('meta[name="description"]');
-    if (description && siteData.settings?.seoDescription) description.setAttribute('content', siteData.settings.seoDescription);
-    if (siteData.settings?.accentColor) document.documentElement.style.setProperty('--blue', siteData.settings.accentColor);
+
+    let description = document.querySelector('meta[name="description"]');
+    if (!description) {
+      description = document.createElement('meta');
+      description.name = 'description';
+      document.head.appendChild(description);
+    }
+    if (siteData.settings?.seoDescription) {
+      description.setAttribute('content', siteData.settings.seoDescription);
+    }
+    if (siteData.settings?.accentColor) {
+      document.documentElement.style.setProperty('--blue', siteData.settings.accentColor);
+    }
   }, [siteData]);
 
   const value = useMemo(() => ({
-    language, setLanguage, theme, setTheme, adminAuthenticated, siteData, setSiteData,
+    language,
+    setLanguage,
+    theme,
+    setTheme,
+    adminAuthenticated,
+    siteData,
+    setSiteData,
     loginDemo(email, password) {
       if (email === 'admin@howiya.local' && password === demoPassword) {
-        sessionStorage.setItem('howiya-demo-session', 'active'); setAdminAuthenticated(true); return true;
+        writeStorageValue('howiya-demo-session', 'active', 'session');
+        setAdminAuthenticated(true);
+        return true;
       }
       return false;
     },
     changeDemoPassword(currentPassword, nextPassword) {
-      if (currentPassword !== demoPassword || typeof nextPassword !== 'string' || nextPassword.length < 10) return false;
-      localStorage.setItem(PASSWORD_KEY, nextPassword);
+      if (currentPassword !== demoPassword || typeof nextPassword !== 'string' || nextPassword.length < 10) {
+        return false;
+      }
+      writeStorageValue(PASSWORD_KEY, nextPassword);
       setDemoPassword(nextPassword);
-      sessionStorage.removeItem('howiya-demo-session');
+      removeStorageValue('howiya-demo-session', 'session');
       setAdminAuthenticated(false);
       return true;
     },
-    logout() { sessionStorage.removeItem('howiya-demo-session'); setAdminAuthenticated(false); },
-    updateCollection(key, value) { setSiteData(current => ({ ...current, [key]: value })); }
+    logout() {
+      removeStorageValue('howiya-demo-session', 'session');
+      setAdminAuthenticated(false);
+    },
+    updateCollection(key, collection) {
+      setSiteData(current => ({ ...current, [key]: collection }));
+    },
   }), [language, theme, adminAuthenticated, siteData, demoPassword]);
+
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
+
 export function useApp() {
   const context = useContext(AppContext);
   if (!context) throw new Error('useApp must be used inside AppProvider');
