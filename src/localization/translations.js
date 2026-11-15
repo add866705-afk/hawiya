@@ -1,18 +1,94 @@
-export const translations={
-ar:{
-nav:{home:'الرئيسية',about:'من أنا',projects:'الأعمال',contact:'تواصل معي',admin:'لوحة الإدارة'},
-hero:{eyebrow:'استوديو هُوية البصرية',title:'نصنع حضورًا\nيُرى ويُتذكّر.',description:'نحوّل الأفكار إلى هويات بصرية واضحة، تحمل شخصية العلامة وتترك أثرها في كل تفصيل.',cta:'استكشف الأعمال',secondary:'ابدأ مشروعك'},
-common:{featured:'مشاريع مختارة',viewAll:'عرض كل الأعمال',services:'ماذا أقدم',aboutTitle:'التصميم أكثر من شكل جميل',aboutText:'هو طريقة ذكية لترجمة الفكرة إلى تجربة متكاملة.',year:'سنة التنفيذ',client:'العميل',overview:'عن المشروع',challenge:'التحدي',strategy:'الاستراتيجية',solution:'الحل الإبداعي',gallery:'مشاهد من الهوية',related:'قد يعجبك أيضًا',palette:'لوحة الألوان',contactTitle:'لنبنِ شيئًا يستحق أن يُرى',contactText:'لديك فكرة أو مشروع قادم؟ يسعدني أن نبدأ الحديث.',send:'إرسال الرسالة',name:'الاسم',email:'البريد الإلكتروني',message:'كيف يمكنني مساعدتك؟',sent:'تم حفظ رسالتك في النسخة التجريبية.',notFound:'الصفحة غير موجودة',backHome:'العودة للرئيسية',all:'الكل',readMore:'اكتشف المشروع',testimonials:'ماذا يقول العملاء',philosophy:'كل علامة لديها قصة تستحق أن تُروى بصريًا.'},
-about:{label:'خلف كل هوية فكرة',title:'أصمم المعنى قبل الشكل.',body:'أساعد العلامات التجارية على اكتشاف صوتها البصري وبناء حضور متناسق يعبر عنها بصدق.',skills:'المهارات',experience:'الخبرات',tools:'الأدوات'},
-footer:{rights:'جميع الحقوق محفوظة.',made:'صُمم بعناية وهوية واضحة.'},
-admin:{login:'دخول الإدارة',email:'البريد الإلكتروني',password:'كلمة المرور',signIn:'تسجيل الدخول',invalid:'بيانات الدخول غير صحيحة.',dashboard:'نظرة عامة',manageProjects:'إدارة المشاريع',manageContent:'إدارة المحتوى',logout:'تسجيل الخروج',projects:'المشاريع',services:'الخدمات',testimonials:'الآراء',messages:'الرسائل',add:'إضافة',edit:'تعديل',delete:'حذف',save:'حفظ التغييرات',cancel:'إلغاء',title:'العنوان',description:'الوصف',cover:'رابط صورة الغلاف',published:'منشور',confirmDelete:'هل تريد حذف هذا العنصر؟',saved:'تم حفظ التغييرات',profile:'الملف التعريفي',empty:'لا توجد عناصر بعد'}
-},
-en:{
-nav:{home:'Home',about:'About',projects:'Work',contact:'Contact',admin:'Admin'},
-hero:{eyebrow:'HOWIYA Visual Studio',title:'We create presence\nthat gets remembered.',description:'We turn ideas into clear visual identities that express a brand’s personality and leave a mark in every detail.',cta:'Explore projects',secondary:'Start a project'},
-common:{featured:'Selected projects',viewAll:'View all work',services:'What I do',aboutTitle:'Design is more than a beautiful shape',aboutText:'It is a thoughtful way to translate an idea into a complete experience.',year:'Year',client:'Client',overview:'Project overview',challenge:'The challenge',strategy:'The strategy',solution:'Creative solution',gallery:'Identity in detail',related:'You may also like',palette:'Color palette',contactTitle:'Let’s build something worth seeing',contactText:'Have an idea or an upcoming project? Let’s start a conversation.',send:'Send message',name:'Name',email:'Email',message:'How can I help?',sent:'Your message was saved in this demo.',notFound:'Page not found',backHome:'Back home',all:'All',readMore:'Explore project',testimonials:'Kind words',philosophy:'Every brand has a story worth telling visually.'},
-about:{label:'Behind every identity is an idea',title:'I design meaning before form.',body:'I help brands discover their visual voice and build a consistent presence that feels true to who they are.',skills:'Skills',experience:'Experience',tools:'Tools'},
-footer:{rights:'All rights reserved.',made:'Designed with care and a clear identity.'},
-admin:{login:'Admin sign in',email:'Email address',password:'Password',signIn:'Sign in',invalid:'Incorrect login details.',dashboard:'Overview',manageProjects:'Manage projects',manageContent:'Manage content',logout:'Sign out',projects:'Projects',services:'Services',testimonials:'Testimonials',messages:'Messages',add:'Add',edit:'Edit',delete:'Delete',save:'Save changes',cancel:'Cancel',title:'Title',description:'Description',cover:'Cover image URL',published:'Published',confirmDelete:'Delete this item?',saved:'Changes saved',profile:'Profile',empty:'No items yet'}
-}
+export const translations = {
+  ar: {
+    nav: { home: 'الرئيسية', about: 'من أنا', projects: 'الأعمال', contact: 'تواصل معي', admin: 'لوحة الإدارة' },
+    hero: {
+      eyebrow: 'استوديو هُوية البصرية',
+      title: 'نصنع حضورًا\nيُرى ويُتذكّر.',
+      description: 'نحوّل الأفكار إلى هويات بصرية واضحة، تحمل شخصية العلامة وتترك أثرها في كل تفصيل.',
+      cta: 'استكشف الأعمال',
+      secondary: 'ابدأ مشروعك'
+    },
+    common: {
+      featured: 'مشاريع مختارة', viewAll: 'عرض كل الأعمال', services: 'ماذا أقدم',
+      aboutTitle: 'التصميم أكثر من شكل جميل',
+      aboutText: 'هو طريقة ذكية لترجمة الفكرة إلى تجربة متكاملة.',
+      year: 'سنة التنفيذ', client: 'العميل', overview: 'عن المشروع',
+      challenge: 'التحدي', strategy: 'الاستراتيجية', solution: 'الحل الإبداعي',
+      gallery: 'مشاهد من الهوية', related: 'قد يعجبك أيضًا', palette: 'لوحة الألوان',
+      contactTitle: 'لنبنِ شيئًا يستحق أن يُرى',
+      contactText: 'لديك فكرة أو مشروع قادم؟ يسعدني أن نبدأ الحديث.',
+      send: 'إرسال الرسالة', saveMessage: 'حفظ الرسالة التجريبية',
+      name: 'الاسم', email: 'البريد الإلكتروني', message: 'كيف يمكنني مساعدتك؟',
+      sent: 'تم حفظ الرسالة في هذا المتصفح فقط، ولم تُرسل إلى بريد إلكتروني.',
+      localOnly: 'تنبيه: هذا نموذج تجريبي. تُحفظ الرسالة في متصفح الزائر فقط ولا تصلك عبر الإنترنت حتى نربط خدمة خلفية.',
+      contactSoon: 'أضف قنوات التواصل الخاصة بك من لوحة الإدارة لتظهر هنا.',
+      notFound: 'الصفحة غير موجودة', backHome: 'العودة للرئيسية',
+      all: 'الكل', readMore: 'اكتشف المشروع', testimonials: 'ماذا يقول العملاء',
+      philosophy: 'كل علامة لديها قصة تستحق أن تُروى بصريًا.',
+      sampleNote: 'المعروض هنا مشاريع مفاهيمية تجريبية. استبدل بياناتها وصورها بأعمالك الفعلية قبل الإطلاق.'
+    },
+    about: {
+      label: 'خلف كل هوية فكرة', title: 'أصمم المعنى قبل الشكل.',
+      body: 'أساعد العلامات التجارية على اكتشاف صوتها البصري وبناء حضور متناسق يعبر عنها بصدق.',
+      skills: 'المهارات', experience: 'الخبرات', tools: 'الأدوات'
+    },
+    footer: { rights: 'جميع الحقوق محفوظة.', made: 'صُمم بعناية وهوية واضحة.' },
+    admin: {
+      login: 'دخول الإدارة', email: 'البريد الإلكتروني', password: 'كلمة المرور',
+      signIn: 'تسجيل الدخول', invalid: 'بيانات الدخول غير صحيحة.',
+      dashboard: 'نظرة عامة', manageProjects: 'إدارة المشاريع', manageContent: 'إدارة المحتوى',
+      logout: 'تسجيل الخروج', projects: 'المشاريع', services: 'الخدمات',
+      testimonials: 'الآراء', messages: 'الرسائل', add: 'إضافة', edit: 'تعديل',
+      delete: 'حذف', save: 'حفظ التغييرات', cancel: 'إلغاء', title: 'العنوان',
+      description: 'الوصف', cover: 'رابط صورة الغلاف', published: 'منشور',
+      confirmDelete: 'هل تريد حذف هذا العنصر؟', saved: 'تم حفظ التغييرات',
+      profile: 'الملف التعريفي', empty: 'لا توجد عناصر بعد'
+    }
+  },
+  en: {
+    nav: { home: 'Home', about: 'About', projects: 'Work', contact: 'Contact', admin: 'Admin' },
+    hero: {
+      eyebrow: 'HOWIYA Visual Studio',
+      title: 'We create presence\nthat gets remembered.',
+      description: 'We turn ideas into clear visual identities that express a brand’s personality and leave a mark in every detail.',
+      cta: 'Explore projects',
+      secondary: 'Start a project'
+    },
+    common: {
+      featured: 'Selected projects', viewAll: 'View all work', services: 'What I do',
+      aboutTitle: 'Design is more than a beautiful shape',
+      aboutText: 'It is a thoughtful way to translate an idea into a complete experience.',
+      year: 'Year', client: 'Client', overview: 'Project overview',
+      challenge: 'The challenge', strategy: 'The strategy', solution: 'Creative solution',
+      gallery: 'Identity in detail', related: 'You may also like', palette: 'Color palette',
+      contactTitle: 'Let’s build something worth seeing',
+      contactText: 'Have an idea or an upcoming project? Let’s start a conversation.',
+      send: 'Send message', saveMessage: 'Save demo message',
+      name: 'Name', email: 'Email', message: 'How can I help?',
+      sent: 'The message was saved in this browser only; it was not emailed.',
+      localOnly: 'Demo form: messages are stored only in the visitor’s browser. They will not reach you online until a backend service is connected.',
+      contactSoon: 'Add your contact channels in the admin area to show them here.',
+      notFound: 'Page not found', backHome: 'Back home',
+      all: 'All', readMore: 'Explore project', testimonials: 'Kind words',
+      philosophy: 'Every brand has a story worth telling visually.',
+      sampleNote: 'These are sample concept projects. Replace their content and images with your real work before launch.'
+    },
+    about: {
+      label: 'Behind every identity is an idea', title: 'I design meaning before form.',
+      body: 'I help brands discover their visual voice and build a consistent presence that feels true to who they are.',
+      skills: 'Skills', experience: 'Experience', tools: 'Tools'
+    },
+    footer: { rights: 'All rights reserved.', made: 'Designed with care and a clear identity.' },
+    admin: {
+      login: 'Admin sign in', email: 'Email address', password: 'Password',
+      signIn: 'Sign in', invalid: 'Incorrect login details.',
+      dashboard: 'Overview', manageProjects: 'Manage projects', manageContent: 'Manage content',
+      logout: 'Sign out', projects: 'Projects', services: 'Services',
+      testimonials: 'Testimonials', messages: 'Messages', add: 'Add', edit: 'Edit',
+      delete: 'Delete', save: 'Save changes', cancel: 'Cancel', title: 'Title',
+      description: 'Description', cover: 'Cover image URL', published: 'Published',
+      confirmDelete: 'Delete this item?', saved: 'Changes saved',
+      profile: 'Profile', empty: 'No items yet'
+    }
+  }
 };
