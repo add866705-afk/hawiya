@@ -17,7 +17,7 @@ function safeExternalUrl(value) {
 }
 
 export default function SiteLayout() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { siteData } = useApp();
   const [open, setOpen] = useState(false);
   const links = [['/', t.nav.home], ['/about', t.nav.about], ['/projects', t.nav.projects], ['/contact', t.nav.contact]];
@@ -27,7 +27,7 @@ export default function SiteLayout() {
   return (
     <>
       <ScrollToTop />
-      <a className="skip-link" href="#main-content">{t.nav.home}</a>
+      <button className="skip-link" type="button" onClick={() => document.getElementById('main-content')?.scrollIntoView({ behavior: 'smooth' })}>{language === 'ar' ? 'تجاوز إلى المحتوى' : 'Skip to content'}</button>
       <header className="site-header">
         <div className="container nav-wrap">
           <Brand />
