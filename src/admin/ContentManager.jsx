@@ -82,10 +82,12 @@ export default function ContentManager() {
     </section>
     <section className="admin-panel content-panel"><h2>{label('إعدادات الموقع وSEO', 'Site & SEO settings')}</h2><div className="editor-grid">
       <label>{label('اسم الموقع', 'Site name')}<input value={settings.siteName || ''} onChange={e => setSettings(s => ({ ...s, siteName: e.target.value }))}/></label>
+      <label className="full-field">{label('رابط الشعار (اختياري)', 'Logo image URL (optional)')}<input type="url" placeholder="https://..." value={settings.logoUrl || ''} onChange={e => setSettings(s => ({ ...s, logoUrl: e.target.value }))}/></label>
       <label>{label('اللغة الافتراضية', 'Default language')}<select value={settings.defaultLanguage || 'ar'} onChange={e => setSettings(s => ({ ...s, defaultLanguage: e.target.value }))}><option value="ar">العربية</option><option value="en">English</option></select></label>
       <label className="full-field">SEO title<input value={settings.seoTitle || ''} onChange={e => setSettings(s => ({ ...s, seoTitle: e.target.value }))}/></label>
       <label className="full-field">SEO description<textarea rows="3" value={settings.seoDescription || ''} onChange={e => setSettings(s => ({ ...s, seoDescription: e.target.value }))}/></label>
-      <label>Brand accent color<input type="color" value={settings.accentColor || '#214aa4'} onChange={e => setSettings(s => ({ ...s, accentColor: e.target.value }))}/></label>
+      <label>{label('اللون الأساسي', 'Primary brand color')}<input type="color" value={settings.accentColor || '#214aa4'} onChange={e => setSettings(s => ({ ...s, accentColor: e.target.value }))}/></label>
+      <label>{label('اللون الداكن', 'Deep brand color')}<input type="color" value={settings.secondaryColor || '#142d65'} onChange={e => setSettings(s => ({ ...s, secondaryColor: e.target.value }))}/></label>
     </div><p className="admin-security-note">{label('تُطبّق إعدادات SEO واللون بعد الضغط على حفظ التغييرات.', 'SEO and color settings apply after saving.')}</p></section>
     <section className="admin-panel content-panel"><h2><KeyRound size={17}/> {label('تغيير كلمة مرور الإدارة التجريبية', 'Change demo admin password')}</h2><form className="editor-grid" onSubmit={changePassword}>
       <label>{label('كلمة المرور الحالية', 'Current password')}<input type="password" autoComplete="current-password" required value={passwords.current} onChange={e => setPasswords(p => ({ ...p, current: e.target.value }))}/></label>
