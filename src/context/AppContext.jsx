@@ -63,6 +63,16 @@ function normalizeSiteData(saved) {
     ? ''
     : (typeof profile.image === 'string' ? profile.image : profileDefaults.image);
 
+  const rawExperience = Array.isArray(profile.experience) ? profile.experience : profileDefaults.experience;
+  const rawAchievements = Array.isArray(profile.achievements) ? profile.achievements : profileDefaults.achievements;
+  const experience = rawExperience.filter(item => ![
+    'تصميم هويات بصرية لعلامات ناشئة ومتوسطة',
+    'تطوير أنظمة تصميم للاستخدام الرقمي والمطبوع',
+  ].includes(item?.ar));
+  const achievements = rawAchievements.filter(item => ![
+    '5 مشاريع هوية ضمن معرض الأعمال',
+    'منهجية عمل تبدأ بالبحث وتنتهي بدليل استخدام',
+  ].includes(item?.ar));
   const cleaned = removeUnverifiedSampleContent(data);
 
   return {
@@ -79,8 +89,8 @@ function normalizeSiteData(saved) {
       socials,
       skills: Array.isArray(profile.skills) ? profile.skills : profileDefaults.skills,
       tools: Array.isArray(profile.tools) ? profile.tools : profileDefaults.tools,
-      experience: Array.isArray(profile.experience) ? profile.experience : profileDefaults.experience,
-      achievements: Array.isArray(profile.achievements) ? profile.achievements : profileDefaults.achievements,
+      experience,
+      achievements,
       image,
     },
     settings: {
