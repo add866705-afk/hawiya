@@ -17,6 +17,8 @@ const DEFAULT_SETTINGS = {
   seoDescription: 'استوديو متخصص في بناء الهويات البصرية والعلامات التجارية.',
   defaultLanguage: 'ar',
   accentColor: '#214aa4',
+  secondaryColor: '#142d65',
+  logoUrl: '',
 };
 
 const isObject = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -145,6 +147,9 @@ export function AppProvider({ children }) {
     }
     if (siteData.settings?.accentColor) {
       document.documentElement.style.setProperty('--blue', siteData.settings.accentColor);
+    }
+    if (siteData.settings?.secondaryColor) {
+      document.documentElement.style.setProperty('--blue-dark', siteData.settings.secondaryColor);
     }
   }, [siteData]);
 
