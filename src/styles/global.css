@@ -42,3 +42,6 @@
 /* Keep the visual identity flat and consistent with the brand system. */
 .about-photo-placeholder{background:#173b91}
 [data-theme=dark] .about-photo-placeholder{background:#101b31}
+
+.brand-mark img{display:block;width:100%;height:100%;object-fit:contain}
+.skip-link{border:0;cursor:pointer}
