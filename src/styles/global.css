@@ -38,3 +38,7 @@
 [data-theme=dark] .about-photo-placeholder{background:linear-gradient(145deg,#0a1222,#1a3265)}
 [data-theme=dark] .contact-storage-note{background:#192438}
 @media(max-width:700px){.sample-work-note{margin:-14px 0 22px;font-size:11px}.about-photo-placeholder{min-height:300px}}
+
+/* Keep the visual identity flat and consistent with the brand system. */
+.about-photo-placeholder{background:#173b91}
+[data-theme=dark] .about-photo-placeholder{background:#101b31}
