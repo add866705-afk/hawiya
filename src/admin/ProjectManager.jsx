@@ -62,8 +62,8 @@ export default function ProjectManager() {
 
   const save = event => {
     event.preventDefault();
-    const slug = editing.slug.trim() || slugify(editing.title.en || editing.title.ar);
-    if (!editing.title.ar.trim() || !slug) {
+    const slug = slugify(editing.slug || editing.title.en || editing.title.ar) || `project-${Date.now()}`;
+    if (!editing.title.ar.trim()) {
       setNotice(label('أدخل العنوان العربي والاسم المختصر للرابط.', 'Add an Arabic title and a valid URL slug.'));
       return;
     }
